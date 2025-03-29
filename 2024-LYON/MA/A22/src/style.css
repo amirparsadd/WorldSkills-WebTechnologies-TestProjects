@@ -1,0 +1,60 @@
+/* Reset CSS */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	width: 300px;
+	height: 300px;
+	padding: 5px;
+	border: 2px solid black;
+	display: grid;
+	gap: 5px;
+	transform: rotate(180deg);
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.bar {
+	width: 100%;
+	height: 0%;
+	transition: all 0.5s;
+	border-radius: 5px;
+}
+
+.bar:nth-child(1) {
+	background-color: red;
+	transition-delay: 0.4s;
+}
+
+.bar:nth-child(2) {
+	background-color: green;
+	transition-delay: 0.3s;
+}
+
+.bar:nth-child(3) {
+	background-color: blue;
+	transition-delay: 0.1s;
+}
+
+.container:hover .bar:nth-child(1) {
+	height: 65%;
+}
+
+.container:hover .bar:nth-child(2) {
+	height: 40%;
+}
+
+.container:hover .bar:nth-child(3) {
+	height: 90%;
+	
+}
