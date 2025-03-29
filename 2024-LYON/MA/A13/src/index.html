@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MA-A13</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="drop"></div>
+	</div>
+	<!-- This SVG section defines a filter that can be applied to elements for a "liquid" effect -->
+	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;" version="1.1">
+		<defs>
+			<!-- The <filter> element defines a custom filter with the ID "liquid" -->
+			<filter id="liquid">
+				<!-- The <feGaussianBlur> applies a blur effect to the input graphic with a standard deviation of 10 -->
+				<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+				
+				<!-- The <feColorMatrix> modifies the color values of the blurred graphic to create a "liquid" effect -->
+				<feColorMatrix 
+					in="blur" 
+					mode="matrix" 
+					values="
+							1 0 0 0 0  
+							0 1 0 0 0  
+							0 0 1 0 0  
+							0 0 0 19 -5" 
+					result="liquid" />
+			</filter>
+		</defs>
+	</svg>
+</body>
+</html>

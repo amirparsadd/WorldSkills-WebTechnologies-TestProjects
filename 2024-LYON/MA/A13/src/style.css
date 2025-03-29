@@ -1,0 +1,83 @@
+/* Reset CSS */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Root element styling */
+:root {
+	background-color: black;
+}
+
+/* Container styling */
+.container {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+
+	/* Flexbox layout */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	/* Apply SVG filter */
+	-webkit-filter: url('#liquid');
+	filter: url('#liquid');
+}
+
+/* Box styling */
+.box {
+	position: absolute;
+	width: 90%;
+	height: 100px;
+	background-color: white;
+	border-radius: 999px; /* Fully rounded corners */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Positioning for the first box */
+.box:nth-child(1) {
+	top: 5%;
+}
+
+/* Positioning for the second box */
+.box:nth-child(2) {
+	bottom: 5%;
+}
+
+/* Drop element styling */
+.drop {
+	position: absolute;
+	width: 70px;
+	height: 70px;
+	background-color: white;
+	top: 5%;
+	border-radius: 999px; /* Fully rounded corners */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	/* Animation for the drop */
+	animation: drop 2s infinite;
+}
+
+/* Drop animation with easing */
+.drop {
+	animation: drop 2s ease-in-out infinite;
+}
+
+/* Keyframes for the drop animation */
+@keyframes drop {
+	0% {
+		top: 5%; /* Start position */
+	}
+	90% {
+		top: 82%; /* Almost at the bottom */
+	}
+	100% {
+		top: 82%; /* End position */
+	}
+}
