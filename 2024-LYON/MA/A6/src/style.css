@@ -1,0 +1,85 @@
+* { /* Reset CSS */
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	width: 100dvw; /* 100% of the viewport width */
+	height: 100dvh; /* 100% of the viewport height */
+}
+
+.page { /* Center the content */
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.page img { 
+	border-radius: 10px; /* Rounded corners (not needed, purely asthetics) */
+}
+
+.loading {
+	/* Full screen overlay */
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	/* Background color */
+	background-color: rgb(83, 114, 191);
+
+	/* Center the spinner */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	/* Fade out */
+	transition: all 0.5s ease;
+}
+
+.spinner { /* Spinner */
+	display: block;
+	width: 100px;
+	height: 100px;
+	position: relative;
+	background-color: transparent;
+	border: 10px solid white;
+	border-radius: 50%; /* Circle */
+	animation: load 1s linear infinite; /* Rotate the spinner */
+	animation-direction: alternate;
+}
+
+.spinner-wrapper {
+	animation: spin .5s linear infinite; /* Rotate the spinner */
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/* Keyframe animation named 'load' that creates a dynamic clipping effect */
+/* The animation manipulates the clip-path property to progressively reveal an element in a clockwise motion */
+@keyframes load {
+	/* At 0%: The polygon is collapsed to a single point at the center, making the element invisible */
+	0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)} 
+	
+	/* At 25%: The polygon expands to include the top-left and top-right corners, forming a triangular shape */
+	25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+	
+	/* At 50%: The polygon further expands to include the bottom-right corner, revealing more of the element */
+	50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+	
+	/* At 75%: The polygon includes the bottom-left corner, covering most of the element */
+	75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+	
+	/* At 100%: The polygon closes the loop by returning to the top-left corner, fully revealing the element */
+	100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
