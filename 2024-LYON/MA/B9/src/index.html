@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Image Compare (MA-B9)</title>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div 
+			onmousedown="document.documentElement.style.setProperty('--perc', `${((event.clientX - document.querySelector('div').getBoundingClientRect().left) / document.querySelector('div').offsetWidth) * 100}%`);"
+			onmousemove="if (event.buttons === 1) document.documentElement.style.setProperty('--perc', `${((event.clientX - document.querySelector('div').getBoundingClientRect().left) / document.querySelector('div').offsetWidth) * 100}%`);">
+		<input type="text">
+		<img src="assets/before.jpg">
+		<img src="assets/after.jpg">
+	</div>
+</body>
+</html>
+

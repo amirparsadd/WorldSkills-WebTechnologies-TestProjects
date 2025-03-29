@@ -1,0 +1,68 @@
+:root {
+	--perc: 50%;
+}
+
+/* General reset */
+body, html {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	height: 100%;
+	user-select: none;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fefefe;
+	font-family: Arial, sans-serif;
+}
+
+div {
+	position: relative;
+	width: 900px;
+	height: 600px;
+	overflow: hidden;
+	border-radius: 10px;
+}
+
+div:hover img {
+	-webkit-filter: brightness(80%);
+	filter: brightness(80%);
+}
+
+img { 
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+img:nth-child(2) {
+	clip-path: inset(0 calc(100% - var(--perc)) 0 0);
+	z-index: 5;
+}
+
+input {
+	position: absolute;
+	top: 0;
+	left: var(--perc);
+	width: 4px;
+	height: 100%;
+	background: url('assets/splitter.svg') no-repeat center;
+	background-size: contain;
+	transform: translateX(-50%) scale(10);
+	border: none;
+	outline: none;
+	z-index: 6;
+	pointer-events: none;
+}
