@@ -1,0 +1,62 @@
+/* Reset margin, padding, and set box-sizing to border-box for all elements */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Set font and background color for the body */
+body {
+	font-family: 'Poppins', sans-serif;
+	background-color: #f0f0f0;
+}
+
+/* Style for the add counter section */
+.addcounter {
+	background-color: #007BFF;
+	width: 100%;
+}
+
+/* General button styling */
+button {
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: all 0.5s ease; /* Smooth transition for hover effects */
+}
+
+/* Button hover effect */
+button:hover {
+	background-color: white;
+	color: black;
+}
+
+/* Grid layout for counters */
+.counters {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+	gap: 20px; /* Space between grid items */
+}
+
+/* Style for individual counter blocks */
+.counter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px; /* Space between elements inside the counter */
+	background-color: white;
+	padding: 10px;
+}
+
+/* Style for decrease button */
+.decrease {
+	background-color: #dc3545; /* Red color */
+}
+
+/* Style for increase button */
+.increase {
+	background-color: #28a745; /* Green color */
+}
