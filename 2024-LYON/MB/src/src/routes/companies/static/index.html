@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Companies</title>
+</head>
+<body>
+	<h1>Companies Management</h1>
+	<hr>
+	<h2>List Of Companies</h2>
+	<ul id="companies">
+	</ul>
+	<hr>
+	<h2>Create Company</h2>
+	<form action="/companies" method="post">
+		<input required type="text" name="address" placeholder="Company Address">
+		<input required type="text" name="name"    placeholder="Company Name">
+		<input required type="text" name="tel"     placeholder="Company Tel">
+		<input required type="text" name="email"   placeholder="Company Email">
+
+		<hr>
+
+		<input required type="text" name="owner_email" placeholder="Company's Owner Email">
+		<input required type="text" name="owner_name"  placeholder="Company's Owner Name">
+		<input required type="text" name="owner_tel"   placeholder="Company's Owner Tel">
+
+		<hr>
+
+		<input required type="text" name="contact_email" placeholder="Company's Contact Email">
+		<input required type="text" name="contact_name"  placeholder="Company's Contact Name">
+		<input required type="text" name="contact_tel"   placeholder="Company's Contact Tel">
+		<hr>
+		<button type="submit">Submit</button>
+
+		<script>
+			const companiesUL = document.getElementById("companies")
+
+			fetch("/companies/list")
+				.then(stream => stream.json())
+				.then(data => {
+					data.forEach(c => {
+						console.log(c)
+						companiesUL.innerHTML += `
+						<li>
+							<p>${c.name} (${c.id}) ${c.deactivated ? "Deactivated" : "Active"}</p>
+							<a href="/companies/toggle/${c.id}">toggle</a>
+						</li>
+						`
+					})
+				})
+		</script>
+	</form>
+</body>
+</html>
