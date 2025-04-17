@@ -1,0 +1,46 @@
+// TODO We should use sql in the future as it is not certain if Prisma will be allowed
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+	id Int @id @unique @default(autoincrement())
+	passphrase String @unique // Hashed Passphrase
+}
+
+model Company {
+	id Int @id @unique @default(autoincrement())
+	name String
+	address String
+	tel String
+	email String
+
+	owner Owner?
+	contact Contact?
+}
+
+model Owner {
+	id Int @id @unique @default(autoincrement())
+	name String
+	tel String
+	email String
+
+	companyID Int @unique
+	company Company @relation(fields: [companyID], references: [id])
+}
+
+model Contact {
+	id Int @id @unique @default(autoincrement())
+	name String
+	tel String
+	email String
+
+	companyID Int @unique
+	company Company @relation(fields: [companyID], references: [id])
+}
