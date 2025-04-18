@@ -22,10 +22,14 @@ router.get("/toggle/:gtin", async (req, res) => {
 				gtin: { 
 					equals: gtin
 				}
+			},
+			include: {
+				company: true
 			}
 		})
 	
 	if(!product) return res.status(404).send("Product Not Found")
+	if(product.company.deactivated && product.hidden) return res.status(400).send("Cannot Activate Product When Company IS Deactivated")
 
 	await prismaClient.
 		product.update({
@@ -55,6 +59,7 @@ router.get("/delete/:gtin", async (req, res) => {
 		})
 	
 	if(!product) return res.status(404).send("Product Not Found")
+	if(!product.hidden) return res.status(400).send("Product Must Be Hidden")
 
 	await prismaClient.
 		product.delete({
