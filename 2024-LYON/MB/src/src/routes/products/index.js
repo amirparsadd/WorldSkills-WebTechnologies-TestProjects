@@ -85,8 +85,6 @@ router.post("/", express.urlencoded(), async (req, res) => {
 	const netContentWeight = parseFloat(req.body.netContentWeight)
 	const gtinAvailable = await isGTINAvailable(gtin)
 
-	console.log(grossWeight, netContentWeight, gtinAvailable)
-
 	if(!gtinAvailable || grossWeight === NaN || netContentWeight === NaN)
 		return res.status(400).send("Invalid Data")
 
