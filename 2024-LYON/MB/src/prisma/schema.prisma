@@ -67,6 +67,6 @@ model Product {
 
 	hidden Boolean @default(false)
 
-	companyID Int @unique
+	companyID Int
 	company Company @relation(fields: [companyID], references: [id])
 }
