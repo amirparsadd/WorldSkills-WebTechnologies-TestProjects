@@ -53,8 +53,22 @@ router.get("/toggle/:id", async (req, res) => {
 				}
 			}
 		})
-	
-	// TODO Hide Products
+
+	if(!company.deactivated) { // The Current State Of Company Before The Update
+		await prismaClient
+			.product.updateMany({
+				where: {
+					companyID: {
+						equals: company.id
+					}
+				},
+				data: {
+					hidden: {
+						set: true
+					}
+				}
+			})
+	}
 	
 	return res.status(200).redirect("/companies")
 })
