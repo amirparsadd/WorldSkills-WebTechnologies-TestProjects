@@ -1,5 +1,7 @@
 # Lyon 2024 - Module B
 
+*Implementor's note: this code contains little to no error handling for db timeouts and other stuff. In a perfect world you would put each controller in a seperate file but you have 3 hours to make this entire thing and im half the way there and at hour 6 so it wouldn't make sense to do that as it would take time. Also, i used Prisma but i need to use SQL later because they might not allow Prisma. i would also defenitly use EJS or handlebars but they might not allow it so raw HTML is the way to go. BTW i used `cookie-parser` as it would be impossible to do cookies without `cookie-parser`. for the file upload part you need `multer` which i don't think they will allow so if there's anyone willing to mess around with `multipart/form-data` and implement it, it would be amazing*
+
 ## Introduction
 We are going to create a management system for an office administrator (as known as "admin") to manage 
 some made-in-France products. Products belongs to companies. The administrator will also manage the 
