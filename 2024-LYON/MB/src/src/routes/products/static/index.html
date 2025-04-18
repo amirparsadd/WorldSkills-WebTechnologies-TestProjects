@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Products</title>
+</head>
+<body>
+	<h1>Products Management</h1>
+	<hr>
+	<h2>List Of Products</h2>
+	<ul id="products">
+		Loading...
+	</ul>
+
+	<script>
+		const productsUL = document.getElementById("products")
+
+		fetch("/products/list")
+			.then(stream => stream.json())
+			.then(data => {
+				productsUL.innerHTML = ""
+				data.forEach(c => {
+					console.log(c)
+					productsUL.innerHTML += `
+					<li>
+						<p>${c.name} (${c.gtin}) ${c.hidden ? "Hidden" : "Active"}</p>
+						<a href="/products/toggle/${c.gtin}">toggle</a>
+					</li>
+					`
+				})
+			})
+	</script>
+</body>
+</html>

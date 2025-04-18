@@ -65,6 +65,8 @@ model Product {
 	desc_EN String @db.LongText
 	desc_FA String @db.LongText
 
+	hidden Boolean @default(false)
+
 	companyID Int @unique
 	company Company @relation(fields: [companyID], references: [id])
 }
