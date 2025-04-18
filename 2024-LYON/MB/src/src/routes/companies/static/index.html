@@ -10,6 +10,7 @@
 	<hr>
 	<h2>List Of Companies</h2>
 	<ul id="companies">
+		Loading...
 	</ul>
 	<hr>
 	<h2>Create Company</h2>
@@ -39,6 +40,7 @@
 			fetch("/companies/list")
 				.then(stream => stream.json())
 				.then(data => {
+					companiesUL.innerHTML = ""
 					data.forEach(c => {
 						console.log(c)
 						companiesUL.innerHTML += `
