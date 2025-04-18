@@ -14,8 +14,10 @@ async function adminCheckMiddleware(req, res, next) {
 
 	const admin = prismaClient.
 		admin.findFirst({
-			select: {
-				passphrase: hash(pass)
+			where: {
+				passphrase: {
+					equals: hash(pass)
+				}
 			}
 		})
 	
