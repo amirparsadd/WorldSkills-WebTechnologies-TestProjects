@@ -5,7 +5,7 @@ const prismaClient = require("../prisma")
  * @param {String} gtin 
  */
 function validateGTINFormat(gtin){
-	if(![14, 15].includes(gtin.length)) return false
+	if(![13, 14].includes(gtin.length)) return false
 	
 	let status = true
 
