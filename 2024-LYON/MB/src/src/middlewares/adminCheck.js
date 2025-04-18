@@ -12,7 +12,7 @@ async function adminCheckMiddleware(req, res, next) {
 
 	if(!pass) return res.redirect("/login")
 
-	const admin = prismaClient.
+	const admin = await prismaClient.
 		admin.findFirst({
 			where: {
 				passphrase: {
@@ -20,7 +20,7 @@ async function adminCheckMiddleware(req, res, next) {
 				}
 			}
 		})
-	
+		
 	if(!admin){
 		return res.clearCookie("pass").redirect("login")
 	}
