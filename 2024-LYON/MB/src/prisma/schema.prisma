@@ -63,7 +63,7 @@ model Product {
 	weightUnit String
 
 	desc_EN String @db.LongText
-	desc_FA String @db.LongText
+	desc_FR String @db.LongText
 
 	hidden Boolean @default(false)
 
