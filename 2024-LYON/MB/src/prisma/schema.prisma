@@ -53,7 +53,7 @@ model Product {
 	name_EN String
 	name_FR String
 
-	gtin String @unique
+	gtin String @unique // Unique Index
 
 	brand String
 	country String
