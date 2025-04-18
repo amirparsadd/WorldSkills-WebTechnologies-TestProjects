@@ -21,6 +21,14 @@ router.get("/:gtin.json", async (req, res) => {
 			where: {
 				gtin: {
 					equals: gtin
+				},
+			},
+			include: {
+				company: {
+					include: {
+						contact: true,
+						owner: true
+					}
 				}
 			}
 		})
