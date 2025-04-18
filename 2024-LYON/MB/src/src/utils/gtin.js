@@ -25,7 +25,11 @@ function validateGTINFormat(gtin){
 async function validateGTINServer(gtin) {
 	const product = await prismaClient.
 		product.findFirst({
-			where: { gtin }
+			where: { 
+				gtin: {
+					equals: gtin
+				} 
+			}
 		})
 	
 	return !!product
