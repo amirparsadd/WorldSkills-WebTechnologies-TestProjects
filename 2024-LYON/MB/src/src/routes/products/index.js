@@ -42,6 +42,30 @@ router.get("/toggle/:gtin", async (req, res) => {
 	return res.redirect("/products")
 })
 
+router.get("/delete/:gtin", async (req, res) => {
+	const { gtin } = req.params
+
+	const product = await prismaClient.
+		product.findFirst({
+			where: {
+				gtin: { 
+					equals: gtin
+				}
+			}
+		})
+	
+	if(!product) return res.status(404).send("Product Not Found")
+
+	await prismaClient.
+		product.delete({
+			where: {
+				gtin
+			}
+		})
+	
+	return res.redirect("/products")
+})
+
 router.get("/list", async (_, res) => {
 	const products = await prismaClient.
 		product.findMany()
