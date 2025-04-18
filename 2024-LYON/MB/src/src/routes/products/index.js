@@ -3,6 +3,7 @@ const fs = require("fs");
 const express = require("express")
 const adminCheckMiddleware = require("../../middlewares/adminCheck");
 const prismaClient = require("../../prisma");
+const { isGTINAvailable } = require("../../utils/gtin");
 
 const router = Router()
 
@@ -17,6 +18,43 @@ router.get("/list", async (_, res) => {
 		product.findMany()
 	
 	res.send(products)
+})
+
+router.post("/", express.urlencoded(), async (req, res) => {
+	const {
+		name_EN, name_FR, gtin, companyID,
+		brand, country,
+		weightUnit, // grossWeight and netContentWeight are raw
+		desc_EN, desc_FR
+	} = req.body
+
+	const grossWeight = parseFloat(req.body.grossWeight)
+	const netContentWeight = parseFloat(req.body.netContentWeight)
+	const gtinAvailable = await isGTINAvailable(gtin)
+
+	console.log(grossWeight, netContentWeight, gtinAvailable)
+
+	if(!gtinAvailable || grossWeight === NaN || netContentWeight === NaN)
+		return res.status(400).send("Invalid Data")
+
+	await prismaClient.
+		product.create({
+			data: {
+				name_EN,
+				name_FR,
+				brand,
+				country,
+				grossWeight,
+				gtin,
+				weightUnit,
+				netContentWeight,
+				desc_EN,
+				desc_FR,
+				companyID: parseInt(companyID)
+			}
+		})
+
+	return res.type("html").send(fs.readFileSync(__dirname + "/static/success.html"))
 })
 
 const productsRouter = router // Better DX

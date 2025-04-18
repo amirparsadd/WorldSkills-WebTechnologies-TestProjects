@@ -9,9 +9,9 @@ function validateGTINFormat(gtin){
 	
 	let status = true
 
-	gtin.split().forEach(el => {
-		const nums = "1234567890".split()
-
+	gtin.split("").forEach(el => {
+		const nums = "1234567890".split("")
+		
 		if(!nums.includes(el)) {status = false}
 	})
 

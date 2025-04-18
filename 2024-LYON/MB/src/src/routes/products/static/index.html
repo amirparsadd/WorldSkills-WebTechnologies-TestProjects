@@ -13,6 +13,26 @@
 		Loading...
 	</ul>
 
+	<h2>Create Product</h2>
+	<form action="/products" method="post">
+		<input required type="text" name="name_EN" placeholder="English Name">
+		<input required type="text" name="name_FR" placeholder="French Name">
+		<input required type="text" name="companyID" placeholder="Company ID">
+		<input required minlength="14" maxlength="15" type="text" name="gtin" placeholder="GTIN">
+		<hr>
+		<input required type="text" name="brand" placeholder="Brand">
+		<input required type="text" name="country" placeholder="country">
+		<hr>
+		<input required type="number" name="grossWeight" placeholder="Gross Weight">
+		<input required type="number" name="netContentWeight" placeholder="Net Content Weight">
+		<input required type="string" name="weightUnit" placeholder="Weight Unit">
+		<hr>
+		<input required type="text" name="desc_EN" placeholder="English Description">
+		<input required type="text" name="desc_FR" placeholder="French Description">
+		<hr>
+		<button type="submit">Submit</button>
+	</form>
+
 	<script>
 		const productsUL = document.getElementById("products")
 
@@ -24,8 +44,9 @@
 					console.log(c)
 					productsUL.innerHTML += `
 					<li>
-						<p>${c.name} (${c.gtin}) ${c.hidden ? "Hidden" : "Active"}</p>
+						<p>${c.name_EN} (${c.gtin}) ${c.hidden ? "Hidden" : "Active"}</p>
 						<a href="/products/toggle/${c.gtin}">toggle</a>
+						${c.hidden ? `<a href="/products/delete/${c.gtin}">delete</a>` : ""}
 					</li>
 					`
 				})
