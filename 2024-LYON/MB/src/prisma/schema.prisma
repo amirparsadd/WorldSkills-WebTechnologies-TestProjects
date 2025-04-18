@@ -58,8 +58,8 @@ model Product {
 	brand String
 	country String
 	
-	grossWeight Int
-	netContentWeight Int
+	grossWeight Float
+	netContentWeight Float
 	weightUnit String
 
 	desc_EN String @db.LongText
