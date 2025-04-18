@@ -34,24 +34,25 @@
 		<hr>
 		<button type="submit">Submit</button>
 
-		<script>
-			const companiesUL = document.getElementById("companies")
-
-			fetch("/companies/list")
-				.then(stream => stream.json())
-				.then(data => {
-					companiesUL.innerHTML = ""
-					data.forEach(c => {
-						console.log(c)
-						companiesUL.innerHTML += `
-						<li>
-							<p>${c.name} (${c.id}) ${c.deactivated ? "Deactivated" : "Active"}</p>
-							<a href="/companies/toggle/${c.id}">toggle</a>
-						</li>
-						`
-					})
-				})
-		</script>
 	</form>
+
+	<script>
+		const companiesUL = document.getElementById("companies")
+
+		fetch("/companies/list")
+			.then(stream => stream.json())
+			.then(data => {
+				companiesUL.innerHTML = ""
+				data.forEach(c => {
+					console.log(c)
+					companiesUL.innerHTML += `
+					<li>
+						<p>${c.name} (${c.id}) ${c.deactivated ? "Deactivated" : "Active"}</p>
+						<a href="/companies/toggle/${c.id}">toggle</a>
+					</li>
+					`
+				})
+			})
+	</script>
 </body>
 </html>
