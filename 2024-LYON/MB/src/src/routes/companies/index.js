@@ -93,5 +93,52 @@ router.post("/", express.urlencoded(), async (req, res) => {
 	return res.type("html").send(fs.readFileSync(__dirname + "/static/success.html"))
 })
 
+router.post("/update", express.urlencoded(), async (req, res) => {
+	const {
+		id,
+		address, name, tel, email, // Company
+		owner_name, owner_tel, owner_email, // Owner
+		contact_name, contact_tel, contact_email, // Contact
+	} = req.body
+
+	const company = await prismaClient.
+		company.findFirst({
+			where: { id: parseInt(id) },
+			include: {
+				contact: true,
+				owner: true
+			}
+		})
+
+	if(!company) return res.status(404).send("Company Not Found!")
+	
+	await prismaClient.
+		company.update({
+			where: { id: parseInt(id) },
+			data: {
+				address: address || company.address,
+				name: name || company.name,
+				tel: tel || company.tel,
+				email: email || company.email,
+				contact: {
+					update: {
+						name: contact_name || company.contact.name,
+						tel: contact_tel || company.contact.tel,
+						email: contact_email || company.contact.email
+					}
+				},
+				owner: {
+					update: {
+						name: owner_name || company.owner.name,
+						tel: owner_tel || company.owner.tel,
+						email: owner_email || company.owner.email
+					}
+				}
+			}
+		})
+
+	return res.status(200).redirect("/companies")
+})
+
 const companiesRouter = router // Better DX
 module.exports = companiesRouter

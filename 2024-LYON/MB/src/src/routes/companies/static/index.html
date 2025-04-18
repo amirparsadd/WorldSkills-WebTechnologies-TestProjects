@@ -36,6 +36,31 @@
 
 	</form>
 
+	<h2>Update Company</h2>
+	<form action="/companies/update" method="post">
+		<input required type="number" name="id" placeholder="Company ID">
+
+		<input type="text" name="address" placeholder="Company Address">
+		<input type="text" name="name"    placeholder="Company Name">
+		<input type="text" name="tel"     placeholder="Company Tel">
+		<input type="text" name="email"   placeholder="Company Email">
+
+		<hr>
+
+		<input type="text" name="owner_email" placeholder="Company's Owner Email">
+		<input type="text" name="owner_name"  placeholder="Company's Owner Name">
+		<input type="text" name="owner_tel"   placeholder="Company's Owner Tel">
+
+		<hr>
+
+		<input type="text" name="contact_email" placeholder="Company's Contact Email">
+		<input type="text" name="contact_name"  placeholder="Company's Contact Name">
+		<input type="text" name="contact_tel"   placeholder="Company's Contact Tel">
+		<hr>
+		<button type="submit">Submit</button>
+
+	</form>
+
 	<script>
 		const companiesUL = document.getElementById("companies")
 
