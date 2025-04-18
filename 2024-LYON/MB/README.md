@@ -162,9 +162,9 @@ description, or description in French, that contains the KEYWORD.
 	"brand": "Green Orchard", 
 	"countryOfOrigin": "France", 
 	"weight": { 
-	"gross": 1.1, 
-	"net": 1.0, 
-	"unit": "L" 
+		"gross": 1.1, 
+		"net": 1.0, 
+		"unit": "L" 
 	}, 
 	"company": { 
 		"companyName": "Euro Expo", 
