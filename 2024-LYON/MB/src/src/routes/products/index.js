@@ -35,7 +35,43 @@ router.get("/:gtin.json", async (req, res) => {
 	
 	if(!product) return res.status(404).send({ success: false, error: "Not Found" })
 
-	res.send({ success: true, error: "", ...product })
+	res.send({
+		success: true,
+		error: "",
+		name: {
+			en: product.name_EN,
+			fr: product.name_FR
+		},
+		description: {
+			en: product.desc_EN,
+			fr: product.desc_FR
+		},
+		gtin: product.gtin,
+		brand: product.brand,
+		countryOfOrigin: product.country,
+		weight: {
+			gross: product.grossWeight,
+			net: product.netContentWeight,
+			unit: product.weightUnit
+		},
+		company: {
+			id: product.company.id,
+			companyName: product.company.name,
+			companyAddress: product.company.address,
+			companyTelephone: product.company.tel,
+			companyEmail: product.company.email,
+			owner: {
+				name: product.company.owner.name,
+				email: product.company.owner.email,
+				mobileNumber: product.company.owner.tel
+			},
+			contact: {
+				name: product.company.contact.name,
+				email: product.company.contact.email,
+				mobileNumber: product.company.contact.tel
+			}
+		}
+	})
 })
 
 router.get("/toggle/:gtin", async (req, res) => {
