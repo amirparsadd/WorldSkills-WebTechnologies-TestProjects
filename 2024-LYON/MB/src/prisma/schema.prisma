@@ -24,6 +24,7 @@ model Company {
 
 	owner Owner?
 	contact Contact?
+	products Product[]
 }
 
 model Owner {
@@ -41,6 +42,28 @@ model Contact {
 	name String
 	tel String
 	email String
+
+	companyID Int @unique
+	company Company @relation(fields: [companyID], references: [id])
+}
+
+model Product {
+	id Int @id @unique @default(autoincrement())
+
+	name_EN String
+	name_FR String
+
+	gtin String @unique
+
+	brand String
+	country String
+	
+	grossWeight Int
+	netContentWeight Int
+	weightUnit String
+
+	desc_EN String @db.LongText
+	desc_FA String @db.LongText
 
 	companyID Int @unique
 	company Company @relation(fields: [companyID], references: [id])
