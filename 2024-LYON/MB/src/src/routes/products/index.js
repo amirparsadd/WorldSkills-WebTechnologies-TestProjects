@@ -13,6 +13,35 @@ router.get("/", (_ , res) => {
 	return res.type("html").send(fs.readFileSync(__dirname + "/static/index.html"))
 })
 
+router.get("/toggle/:gtin", async (req, res) => {
+	const { gtin } = req.params
+
+	const product = await prismaClient.
+		product.findFirst({
+			where: {
+				gtin: { 
+					equals: gtin
+				}
+			}
+		})
+	
+	if(!product) return res.status(404).send("Product Not Found")
+
+	await prismaClient.
+		product.update({
+			where: {
+				gtin
+			},
+			data: {
+				hidden: {
+					set: !product.hidden
+				}
+			}
+		})
+	
+	return res.redirect("/products")
+})
+
 router.get("/list", async (_, res) => {
 	const products = await prismaClient.
 		product.findMany()
