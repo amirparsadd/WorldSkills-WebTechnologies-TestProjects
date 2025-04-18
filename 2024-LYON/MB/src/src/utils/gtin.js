@@ -26,12 +26,10 @@ async function validateGTINServer(gtin) {
 	const product = await prismaClient.
 		product.findFirst({
 			where: { 
-				gtin: {
-					equals: gtin
-				} 
+				gtin: gtin
 			}
 		})
-	
+		
 	return !!product
 }
 
@@ -40,7 +38,7 @@ async function validateGTINServer(gtin) {
  * @param {String} gtin 
  */
 async function isGTINAvailable(gtin) {
-	return validateGTINFormat(gtin) && !(await validateGTINServer())
+	return validateGTINFormat(gtin) && !(await validateGTINServer(gtin))
 }
 
 module.exports = { validateGTINFormat, validateGTINServer, isGTINAvailable }
