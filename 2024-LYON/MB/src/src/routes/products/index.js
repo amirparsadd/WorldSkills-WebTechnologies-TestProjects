@@ -154,6 +154,15 @@ router.post("/", express.urlencoded(), async (req, res) => {
 	if(!gtinAvailable || grossWeight === NaN || netContentWeight === NaN)
 		return res.status(400).send("Invalid Data")
 
+	const company = await prismaClient.
+		company.findFirst({ 
+			where: {
+				id: parseInt(companyID)
+			}
+		})
+	
+	if(!company) return res.status(404).send("Company Not Found")
+
 	await prismaClient.
 		product.create({
 			data: {
