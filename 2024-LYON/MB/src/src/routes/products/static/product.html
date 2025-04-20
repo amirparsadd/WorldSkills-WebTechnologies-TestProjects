@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Product Page</title>
+</head>
+<body>
+	<h1>Product Manager</h1>
+	<div id="control"></div>
+	<pre id="product">Loading...</pre>
+	<script>
+		const productDiv = document.getElementById("product")
+		const controlDiv = document.getElementById("control")
+		const gtin = location.pathname.split("/").at(-1)
+
+		controlDiv.innerHTML = 
+		`
+			<a href="/products/toggle/${gtin}">Toggle</a>
+			<a href="/products/delete/${gtin}">Delete</a>
+		`
+
+		fetch(`/products/${gtin}.json`)
+			.then(stream => stream.json())
+			.then(data => {
+				productDiv.innerHTML = JSON.stringify(data, null, "\t").replace(/"/g, "")
+			})
+		
+	</script>
+</body>
+</html>

@@ -45,8 +45,7 @@
 					productsUL.innerHTML += `
 					<li>
 						<p>${c.name_EN} (${c.gtin}) ${c.hidden ? "Hidden" : "Active"}</p>
-						<a href="/products/toggle/${c.gtin}">toggle</a>
-						${c.hidden ? `<a href="/products/delete/${c.gtin}">delete</a>` : ""}
+						<a href="/products/${c.gtin}">Manage</a>
 					</li>
 					`
 				})
